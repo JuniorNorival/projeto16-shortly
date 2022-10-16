@@ -25,7 +25,7 @@ async function signIn(req, res) {
     const token = uuidv4();
     await connection.query(
       'INSERT INTO sessions ("userId", token) VALUES ($1,$2)',
-      [user[0].id, token]
+      [user.id, token]
     );
     res.status(200).send({ token: token });
   } catch (error) {
