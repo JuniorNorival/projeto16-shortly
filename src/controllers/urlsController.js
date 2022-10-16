@@ -127,10 +127,10 @@ async function ranking(req, res) {
         SUM(urls."visitCount") AS "visitCount" 
         FROM users LEFT JOIN urls 
         ON urls."userId"=users.id 
-        GROUP BY users.id ORDER BY "visitCount" LIMIT 10`
+        GROUP BY users.id ORDER BY "visitCount" DESC LIMIT 10`
       )
     ).rows;
-    console.log(ranking);
+    res.status(200).send(ranking);
   } catch (error) {
     console.log(error.message);
     res.sendStatus(500);
